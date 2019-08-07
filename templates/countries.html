@@ -30,6 +30,8 @@
   {% if country %}
     <h2>Number of Idiots: {{ country.stat }}</h2>
   {% else %}
-    <canvas id="bar-chart" width="800" height="450"></canvas>
+    <canvas id="bar-chart"></canvas>
+
+    <button id="refresh" type="button">Refresh</button>
   {% endif %}
 {% endblock %}

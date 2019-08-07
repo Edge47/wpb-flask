@@ -21,4 +21,8 @@ $(function() {
         }
       }
   });
+
+  $('#refresh').click(function() {
+    alert('hi');
+  });
 });
