@@ -1,21 +1,19 @@
 $(function() {
   var barChart = $('#bar-chart');
-
-  var myChart;
   
-  createChart(myChart, barChart, [0, 0, 0]);
+  var myChart = createChart(barChart, [0, 0, 0]);
 
   $('.refresh').click(function() {
-    $.get("/data/" + $(this).text(), function(result) {
-      createChart(myChart, barChart, result.data);
+    $.get("/data/" + $(this).data('key'), function(result) {
+      myChart.destroy();
+
+      myChart = createChart(barChart, result.data);
     });
   });
 });
 
-function createChart(chart, canvas, data) {
-  if (chart) chart.destroy();
-  
-  chart = new Chart(canvas, {
+function createChart(canvas, data) {  
+  return new Chart(canvas, {
     type: 'bar',
     data: {
       labels: ['UK', 'Ireland', 'Istanbul'],

@@ -1,6 +1,6 @@
 from flask import Flask, render_template, url_for, jsonify
 from database import db_session, init_db
-from models import get_countries, get_country
+from models import get_countries, get_country, get_country_by_id
 
 app = Flask(__name__)
 
@@ -47,9 +47,9 @@ def countries(country_name=None):
         **default_context()
     )
 
-@app.route("/data/<country_name>")
-def data(country_name):
-    country = get_country(country_name)
+@app.route("/data/<country_id>")
+def data(country_id):
+    country = get_country_by_id(country_id)
 
     if country is None:
         data = [0, 0, 0]
