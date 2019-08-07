@@ -47,6 +47,15 @@ def countries(country_name=None):
         **default_context()
     )
 
-@app.route("/data")
-def data():
-    return jsonify(data=[1, 2, 3])
+@app.route("/data/<country_name>")
+def data(country_name):
+    country = get_country(country_name)
+
+    if country is None:
+        data = [0, 0, 0]
+    elif (country.id == 1):
+        data = [1, 2, 3]
+    else:
+        data = [3, 2, 1]
+
+    return jsonify(data=data)

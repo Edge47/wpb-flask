@@ -5,8 +5,8 @@ $(function() {
   
   createChart(myChart, barChart, [0, 0, 0]);
 
-  $('#refresh').click(function() {
-    $.get("/data", function(result) {
+  $('.refresh').click(function() {
+    $.get("/data/" + $(this).text(), function(result) {
       createChart(myChart, barChart, result.data);
     });
   });
