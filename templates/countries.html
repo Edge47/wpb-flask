@@ -31,9 +31,9 @@
     <h2>Number of Idiots: {{ country.stat }}</h2>
   {% else %}
     <canvas id="bar-chart"></canvas>
-
-    <button class="refresh" type="button" data-key="1">UK</button>
-    <button class="refresh" type="button" data-key="2">Istanbul</button>
-    <button class="refresh" type="button" data-key="3">Ireland</button>
+  
+    {% for c in country_list %}
+      <button class="refresh" type="button" data-key="{{ c.key }}">{{ c.label }}</button>
+    {% endfor %}
   {% endif %}
 {% endblock %}

@@ -36,6 +36,7 @@ def countries(country_name=None):
         'countries.html',
         country_list = [
             {
+                'key'       : c.id,
                 'label'     : c.name,
                 'stat'      : c.stat,
                 'colour'    : "#" + c.colour,
@@ -53,9 +54,7 @@ def data(country_id):
 
     if country is None:
         data = [0, 0, 0]
-    elif (country.id == 1):
-        data = [1, 2, 3]
     else:
-        data = [3, 2, 1]
+        data = [country.stat] * 3
 
     return jsonify(data=data)
