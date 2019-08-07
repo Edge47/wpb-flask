@@ -1,8 +1,6 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, jsonify
 from database import db_session, init_db
 from models import get_countries, get_country
-
-import json
 
 app = Flask(__name__)
 
@@ -21,7 +19,7 @@ def default_context():
 def initialise():
     init_db(create_test_data=True)
     
-    return json.dumps({"status": "Database Initialised"})
+    return jsonify(status="Database Initialised")
 
 @app.route("/")
 def home():
@@ -48,3 +46,7 @@ def countries(country_name=None):
         page = 'All Countries' if country_name is None else country_name,
         **default_context()
     )
+
+@app.route("/data")
+def data():
+    return jsonify(data=[1, 2, 3])
